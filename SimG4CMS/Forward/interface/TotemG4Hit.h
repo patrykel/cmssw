@@ -32,9 +32,11 @@
 // user include files
 
 #include "G4VHit.hh"
-#include "DataFormats/Math/interface/Point3D.h"
+#include <CLHEP/Vector/ThreeVector.h>
 #include <boost/cstdint.hpp>
 #include <iostream>
+
+using CLHEP::Hep3Vector;
 
 class TotemG4Hit : public G4VHit {
   
@@ -53,96 +55,109 @@ public:
   void         Draw(){}
   void         Print();
 
-  math::XYZPoint   getEntry() const;
-  void         setEntry(double x, double y, double z)      {entry.SetCoordinates(x,y,z);}
-  
   double       getEM() const;
   void         setEM (double e);
-  
+
   double       getHadr() const;
   void         setHadr (double e);
+
+  public:
+  Hep3Vector getEntry() const;
+  void setEntry(Hep3Vector xyz);
+  Hep3Vector getExit() const;
+  void setExit(Hep3Vector xyz);
+
+  void setLocalEntry(const Hep3Vector &theLocalEntryPoint);
+  void setLocalExit(const Hep3Vector &theLocalExitPoint);
+  Hep3Vector getLocalEntry() const;
+  Hep3Vector getLocalExit() const;
   
   double       getIncidentEnergy() const;
   void         setIncidentEnergy (double e);
   
-  int          getTrackID() const;
+  unsigned int          getTrackID() const;
   void         setTrackID (int i);
   
-  uint32_t     getUnitID() const;
-  void         setUnitID (uint32_t i);
+  int     getUnitID() const;
+  void         setUnitID (unsigned int i);
   
   double       getTimeSlice() const;     
   void         setTimeSlice(double d);
-  int          getTimeSliceID() const;     
-  
-  void         addEnergyDeposit(double em, double hd);
-  void         addEnergyDeposit(const TotemG4Hit& aHit);
-  
-  double       getEnergyDeposit() const;
-  
-  float        getPabs() const;
-  float        getTof() const;
-  float        getEnergyLoss() const;
+  int          getTimeSliceID() const;
+
+  double        getPabs() const;
+  double        getTof() const;
+  double        getEnergyLoss() const;
   int          getParticleType() const;
 
-  void         setPabs(float e);
-  void         setTof(float e);
-  void         setEnergyLoss(float e) ;
-  void         setParticleType(short i) ;
+  void setPabs(double e);
+  void setTof(double e);
+  void setEnergyLoss(double e);
+  void setParticleType(short i);
 
-  float        getThetaAtEntry() const;   
-  float        getPhiAtEntry() const;
+  void addEnergyLoss(double e);
 
-  void         setThetaAtEntry(float t);
-  void         setPhiAtEntry(float f) ;
+  double getThetaAtEntry() const;
+  double getPhiAtEntry() const;
 
-  float        getX() const;
-  float        getY() const;
-  float        getZ() const;
-  void         setX(float t);
-  void         setY(float t);
-  void         setZ(float t);
+  void setThetaAtEntry(double t);
+  void setPhiAtEntry(double f);
 
-  int          getParentId() const;
-  float        getVx() const;
-  float        getVy() const;
-  float        getVz() const;
+  double getX() const;
+  void setX(double t);
+  double getY() const;
+  double getZ() const;
+  void setY(double t);
+  void setZ(double t);
 
-  void         setParentId(int p);
-  void         setVx(float p);
-  void         setVy(float p);
-  void         setVz(float p);
+  int getParentId() const;
+  double getVx() const;
+  double getVy() const;
+  double getVz() const;
+
+  void setParentId(int p);
+  void setVx(double p);
+  void setVy(double p);
+  void setVz(double p);
+
+  void set_p_x(double p);
+  void set_p_y(double p);
+  void set_p_z(double p);
+
+  double get_p_x() const;
+  double get_p_y() const;
+  double get_p_z() const;
 
 private:
-  
-  math::XYZPoint   entry;             //Entry point
-  double       elem;              //EnergyDeposit of EM particles
-  double       hadr;              //EnergyDeposit of HD particles
-  double       theIncidentEnergy; //Energy of the primary particle
-  int          theTrackID;        //Identification number of the primary
+  Hep3Vector entry;             //Entry point
+  Hep3Vector exit;    //Exit point
+  Hep3Vector local_entry;    //local entry point
+  Hep3Vector local_exit;     //local exit point
+  double theIncidentEnergy; //Energy of the primary particle
+  int theTrackID;        //Identification number of the primary
                                   //particle
-  uint32_t     theUnitID;         //Totem Unit Number
-  double       theTimeSlice;      //Time Slice Identification
+  uint32_t theUnitID;         //Totem Unit Number
+  double theTimeSlice;      //Time Slice Identification
 
+  double theX;
+  double theY;
+  double theZ;
+  double thePabs;
+  double theTof;
+  double theEnergyLoss;
+  int theParticleType;
 
-  float        theX;
-  float        theY;
-  float        theZ;
-  float        thePabs;
-  float        theTof;
-  float        theEnergyLoss;
-  int          theParticleType;
+  double theThetaAtEntry;
+  double thePhiAtEntry;
+  Hep3Vector theEntryPoint;
+  Hep3Vector theExitPoint;
 
-  float        theThetaAtEntry;
-  float        thePhiAtEntry;
-  math::XYZPoint   theEntryPoint;
-  math::XYZPoint   theExitPoint;
+  int theParentId;
+  double theVx;
+  double theVy;
+  double theVz;
 
-  int          theParentId;
-  float        theVx;
-  float        theVy;
-  float        theVz;
-
+  double p_x, p_y, p_z;
 };
 
 std::ostream& operator<<(std::ostream&, const TotemG4Hit&);
