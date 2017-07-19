@@ -136,7 +136,7 @@ void TotemRPGeometryESModule::ApplyAlignments(const ESHandle<DetGeomDesc> &ideal
     if (! pD->name().name().compare(DDD_TOTEM_RP_PRIMARY_VACUUM_NAME))
     {
       unsigned int rpId = pD->geographicalID();
-      
+
       if (alignments.isValid())
       {
         const RPAlignmentCorrectionData& ac = alignments->GetRPCorrection(rpId);
@@ -424,7 +424,7 @@ std::unique_ptr<DDCompactView> TotemRPGeometryESModule::produceMeasuredDDCV(cons
 {
   // get the ideal DDCompactView from EventSetup
   edm::ESHandle<DDCompactView> idealCV;
-  iRecord.getRecord<IdealGeometryRecord>().get("XMLIdealGeometryESSource_CTPPS", idealCV);
+  iRecord.getRecord<IdealGeometryRecord>().get(idealCV);
 
   // load alignments
   edm::ESHandle<RPAlignmentCorrectionsData> alignments;

@@ -10,4 +10,6 @@
 <use   name="hepmc"/>
 <use   name="CondFormats/DataRecord"/>
 <use   name="CondFormats/BeamSpotObjects"/>
+<use   name="TotemCondFormats/BeamOpticsParamsObjects"/>
+<use   name="TotemCondFormats/DataRecord"/>
 <use   name="CondCore/DBOutputService"/>

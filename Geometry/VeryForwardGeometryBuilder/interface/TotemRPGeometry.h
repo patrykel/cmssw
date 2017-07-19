@@ -125,7 +125,7 @@ class TotemRPGeometry
 
     /// after checks returns set of RP corresponding to the given station ID
     std::set<unsigned int> RPsInStation(unsigned int) const;
-    
+
     /// after checks returns set of detectors corresponding to the given RP ID
     /// containts decimal detetector IDs
     std::set<unsigned int> DetsInRP(unsigned int) const;
