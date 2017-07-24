@@ -12,7 +12,7 @@
 <use   name="FWCore/Framework"/>
 <use   name="FWCore/ParameterSet"/>
 <use   name="FWCore/MessageLogger"/>
-<use   name="DataFormats/TotemRPDetId"/>
+<use   name="DataFormats/CTPPSDetId"/>
 <use   name="boost"/>
 <use   name="geant4core"/>
 <use   name="geant4"/>

@@ -3,7 +3,7 @@
 
 #include "FWCore/Framework/interface/ESHandle.h"
 #include "DataFormats/TotemRPDataTypes/interface/RPTypes.h"
-#include "CondFormats/TotemReadoutObjects/interface/TotemAnalysisMask.h"
+#include "CondFormats/CTPPSReadoutObjects/interface/TotemAnalysisMask.h"
 
 /*
  * This purpose of this class is to answer the question whether a channel (given by detectorId
