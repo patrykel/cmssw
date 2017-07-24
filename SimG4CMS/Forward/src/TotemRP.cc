@@ -16,7 +16,7 @@
 #include "SimG4CMS/Forward/interface/TotemG4Hit.h"
 #include "SimG4CMS/Forward/interface/TotemG4HitCollection.h"
 
-#include "DataFormats/TotemRPDetId/interface/TotemRPDetId.h"
+#include "DataFormats/CTPPSDetId/interface/TotemRPDetId.h"
 
 #include "FWCore/Framework/interface/EventSetup.h"
 #include "FWCore/Framework/interface/ESHandle.h"
@@ -828,7 +828,7 @@ void TotemRP::update(const EndOfEvent * evt)
           histos->set_EVT(evtnum);
 
           TotemRPDetId det_id((uint32_t)UID);
-          histos->set_UID(det_id.detectorDecId());
+          histos->set_UID(det_id.plane()+det_id.getRPDecimalId());
 
           histos->set_Ptype(Ptype) ;
           histos->set_TID(TID) ;

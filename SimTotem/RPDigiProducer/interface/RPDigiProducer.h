@@ -24,7 +24,7 @@
 
 #include "FWCore/ParameterSet/interface/ParameterSet.h"
 #include "DataFormats/TotemRPDataTypes/interface/RPStripDigi.h"
-#include "DataFormats/TotemDigi/interface/TotemRPDigi.h"
+#include "DataFormats/CTPPSDigi/interface/TotemRPDigi.h"
 #include "DataFormats/TotemRPDataTypes/interface/RPDetTrigger.h"
 #include "SimTotem/RPDigiProducer/interface/RPSimTypes.h"
 

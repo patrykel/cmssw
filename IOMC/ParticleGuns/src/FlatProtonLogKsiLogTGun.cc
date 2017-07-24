@@ -229,9 +229,9 @@ void FlatProtonLogKsiLogTGun::produce(edm::Event& e, const edm::EventSetup& es)
     fEvt_->print();
   }
 
-  std::auto_ptr<edm::HepMCProduct> BProduct(new edm::HepMCProduct()) ;
+  std::unique_ptr<edm::HepMCProduct> BProduct(new edm::HepMCProduct()) ;
   BProduct->addHepMCData(fEvt_);
-  e.put(BProduct);
+  e.put(std::move(BProduct));
 
   if(verbosity_)
   {

@@ -20,16 +20,16 @@
 
 #include "DataFormats/TotemRPDataTypes/interface/RPStripDigi.h"
 #include "DataFormats/TotemRPDataTypes/interface/RPDetTrigger.h"
-#include "DataFormats/TotemDigi/interface/TotemRPDigi.h"
+#include "DataFormats/CTPPSDigi/interface/TotemRPDigi.h"
 #include "DataFormats/Common/interface/DetSetVector.h"
-#include "DataFormats/TotemRPDetId/interface/TotemRPDetId.h"
+#include "DataFormats/CTPPSDetId/interface/TotemRPDetId.h"
 
 //Random Number
 #include "FWCore/ServiceRegistry/interface/Service.h"
 #include "FWCore/Utilities/interface/RandomNumberGenerator.h"
 #include "FWCore/Utilities/interface/Exception.h"
 #include "CLHEP/Random/RandomEngine.h"
-#include "CondFormats/TotemReadoutObjects/interface/TotemAnalysisMask.h"
+#include "CondFormats/CTPPSReadoutObjects/interface/TotemAnalysisMask.h"
 #include "CondFormats/DataRecord/interface/TotemDAQMappingRecord.h"
 #include <iostream>
 
@@ -200,9 +200,9 @@ void RPDigiProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup) 
 	}
 
 	// Step C: create empty output collection
-	std::auto_ptr<edm::DetSetVector<TotemRPDigi> > digi_output(
+	std::unique_ptr<edm::DetSetVector<TotemRPDigi> > digi_output(
 	        new edm::DetSetVector<TotemRPDigi>(theDigiVector));
-	std::auto_ptr<edm::DetSetVector<RPDetTrigger> > trigger_output(
+	std::unique_ptr<edm::DetSetVector<RPDetTrigger> > trigger_output(
 	        new edm::DetSetVector<RPDetTrigger>(theTriggerVector));
 
 	if (verbosity_) {
@@ -210,8 +210,8 @@ void RPDigiProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup) 
 		std::cout << "trigger_output->size()=" << trigger_output->size() << std::endl;
 	}
 	// Step D: write output to file
-	iEvent.put(digi_output);
-	iEvent.put(trigger_output);
+	iEvent.put(std::move(digi_output));
+	iEvent.put(std::move(trigger_output));
 }
 
 // ------------ method called once each job just before starting event loop  ------------
