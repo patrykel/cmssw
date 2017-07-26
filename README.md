@@ -9,4 +9,4 @@ scram b -j 8
 cd Configuration/Test
 cmsRun test.py
 ~~~~
-The code is based on official CMS 8_1_0 release and Marcin ziaber's fork (ziaber/simulation)
+The code is based on official CMS 8_1_0 release and Marcin Ziaber's fork (ziaber/simulation)
