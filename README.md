@@ -1,10 +1,10 @@
 In order to run CTPPS simulation in CMSSW_8_1_0 follow these steps in terminal:
 ~~~~
-source /afs/cern.ch/cms/cmsset_default.sh
-cmsrel CMSSW_8_1_0_pre8
-cd CMSSW_8_1_0_pre8/src
+source /cvmfs/cms.cern.ch/cmsset_default.sh
+cmsrel CMSSW_9_2_6
+cd CMSSW_9_2_6/src
 cmsenv
-git cms-merge-topic ziaber:simulation
+git cms-merge-topic mackoo13:simulation_9_2_6
 scram b -j 4
 cd Configuration/Test
 cmsRun test.py
