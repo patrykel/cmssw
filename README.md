@@ -1,6 +1,6 @@
 In order to run CTPPS simulation in CMSSW_8_1_0 follow these steps in terminal:
 ~~~~
-source /afs/cern.ch/cms/cmsset_default.sh
+source /cvmfs/cms.cern.ch/cmsset_default.sh
 cmsrel CMSSW_8_1_0
 cd CMSSW_8_1_0/src
 cmsenv
