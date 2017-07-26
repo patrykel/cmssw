@@ -2,8 +2,8 @@
 #define SimTotem_RPDigiProducer_RP_DISPLACEMENT_GENERATOR_H
 
 #include "DataFormats/TotemRPDataTypes/interface/RPTypes.h"
-#include "DetectorDescription/Base/interface/DDRotationMatrix.h"
-#include "DetectorDescription/Base/interface/DDTranslation.h"
+#include "DetectorDescription/Core/interface/DDRotationMatrix.h"
+#include "DetectorDescription/Core/interface/DDTranslation.h"
 #include <Math/Rotation3D.h>
 #include <map>
 

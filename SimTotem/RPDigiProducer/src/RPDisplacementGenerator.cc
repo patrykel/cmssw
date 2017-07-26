@@ -43,7 +43,7 @@ RPDisplacementGenerator::RPDisplacementGenerator(const edm::ParameterSet &ps, RP
   // transform shift and rotation to the local coordinate frame
   ESHandle<TotemRPGeometry> geom;
   iSetup.get<VeryForwardRealGeometryRecord>().get(geom);
-  DetGeomDesc *g = geom->GetDetector(detId);
+  const DetGeomDesc *g = geom->GetDetector(detId);
 
   //const DDTranslation& S_l = g->translation();
   const DDRotationMatrix& R_l = g->rotation();
