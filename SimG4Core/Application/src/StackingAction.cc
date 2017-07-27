@@ -212,13 +212,6 @@ G4ClassificationOfNewTrack StackingAction::ClassifyNewTrack(const G4Track * aTra
     } else {
       newTA->primary(aTrack);
     }
-
-  } else if (aTrack->GetTouchable() == 0) {
-    edm::LogError("SimG4CoreApplication")
-      << "StackingAction: no touchable for track " << aTrack->GetTrackID()
-      << " from " << aTrack->GetParentID()
-      << " with PDG code " << aTrack->GetDefinition()->GetParticleName();
-    classification = fKill;
   } else {
 
     // secondary
