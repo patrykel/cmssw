@@ -132,7 +132,9 @@ BeamProtTransportSetup = cms.PSet(
 
 # DDL geometry (ideal)
 totemGeomXMLFiles = cms.vstring(
-        'Geometry/CMSCommonData/data/materials.xml',
+        # 'Geometry/CMSCommonData/data/materials.xml',
+        # the following is the same file from 9_2_6, for the purpose of comparison
+        'Configuration/Test/materials.xml',
         'Geometry/CMSCommonData/data/rotations.xml',
         'Geometry/CMSCommonData/data/extend/cmsextent.xml',
         'Geometry/CMSCommonData/data/cms.xml',
