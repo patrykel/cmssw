@@ -1,4 +1,5 @@
 #include "SimG4CMS/Forward/interface/CastorSD.h"
+#include "SimG4CMS/Forward/interface/TotemRP.h"
 #include "SimG4CMS/Forward/interface/TotemSD.h"
 #include "SimG4CMS/Forward/interface/ZdcSD.h"
 #include "SimG4CMS/Forward/interface/TotemTestGem.h"
@@ -38,3 +39,4 @@ DEFINE_SIMWATCHER (ZdcTestAnalysis);
 DEFINE_SIMWATCHER (DoCastorAnalysis);
 DEFINE_SIMWATCHER (TotemTestGem);
 DEFINE_SIMWATCHER (BscTest);
+DEFINE_SIMWATCHER(TotemRP);

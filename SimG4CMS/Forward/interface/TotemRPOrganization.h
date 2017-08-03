@@ -31,7 +31,7 @@ class TotemRPOrganization : public TotemVDetectorOrganization {
 public: 
 
   // ---------- Constructor and destructor -----------------
-  TotemRPOrganization();
+  inline TotemRPOrganization();
   virtual          ~TotemRPOrganization();
 
   // ---------- member functions ---------------------------
@@ -51,4 +51,8 @@ private:
   int              _currentLayer;
 
 };
+
+inline TotemRPOrganization :: TotemRPOrganization()
+{}
+
 #endif
