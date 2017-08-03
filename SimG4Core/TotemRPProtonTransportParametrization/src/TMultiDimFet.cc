@@ -8,10 +8,6 @@
 *   Hubert Niewiadomski
 *   Jan Kašpar (jan.kaspar@gmail.com)
 *
-* $$RCSfile: TMultiDimFet.cc,v $: $
-* $Revision: 1.3.2.3 $
-* $Date: 2009/11/03 10:39:50 $
-*
 ****************************************************************************/
 
 

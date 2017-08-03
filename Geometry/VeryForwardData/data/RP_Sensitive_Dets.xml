@@ -5,7 +5,7 @@
     <SpecParSection label="RP_Sensitive_Dets.xml">
         <SpecPar name="ROUHitsTotemRP">
             <PartSelector path="//RP_Silicon_Detector"/>
-            <Parameter name="SensitiveDetector" value="RomanPotSensitiveDetector" eval="false"/>
+            <Parameter name="SensitiveDetector" value="TotemSensitiveDetector" eval="false"/>
             <Parameter name="ReadOutName" value="TotemHitsRP" eval="false"/>
         </SpecPar>
     </SpecParSection>

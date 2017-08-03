@@ -8,10 +8,6 @@
 *   Hubert Niewiadomski
 *   Jan Kašpar (jan.kaspar@gmail.com)
 *
-* $$RCSfile: TMultiDimFet.h,v $: $
-* $Revision: 1.2.6.3 $
-* $Date: 2009/11/03 10:39:50 $
-*
 ****************************************************************************/
 
 #ifndef SimG4Core_TotemRPProtonTransportParametrization_TMultiDimFet_H
