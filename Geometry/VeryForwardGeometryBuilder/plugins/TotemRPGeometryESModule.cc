@@ -414,7 +414,7 @@ void TotemRPGeometryESModule::ApplyAlignments(const edm::ESHandle<DDCompactView>
 
 //----------------------------------------------------------------------------------------------------
 
-std::unique_ptr<DDCompactView> TotemRPGeometryESModule::produceMeasuredDDCV(const VeryForwardMeasuredGeometryRecord &iRecord)
+std::auto_ptr<DDCompactView> TotemRPGeometryESModule::produceMeasuredDDCV(const VeryForwardMeasuredGeometryRecord &iRecord)
 {
     // get the ideal DDCompactView from EventSetup
     edm::ESHandle<DDCompactView> idealCV;
@@ -442,7 +442,7 @@ std::unique_ptr<DDCompactView> TotemRPGeometryESModule::produceMeasuredDDCV(cons
 
     DDCompactView *measuredCV = NULL;
     ApplyAlignments(idealCV, alignments, measuredCV);
-    return std::unique_ptr<DDCompactView>(measuredCV);
+    return std::auto_ptr<DDCompactView>(measuredCV);
 }
 
 //----------------------------------------------------------------------------------------------------

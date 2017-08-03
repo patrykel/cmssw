@@ -828,7 +828,7 @@ void TotemRP::update(const EndOfEvent * evt)
           histos->set_EVT(evtnum);
 
           TotemRPDetId det_id((uint32_t)UID);
-          histos->set_UID(det_id.detectorDecId());
+          histos->set_UID(det_id.getPlaneDecimalId());
 
           histos->set_Ptype(Ptype) ;
           histos->set_TID(TID) ;
