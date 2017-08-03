@@ -16,7 +16,7 @@
 #include "SimG4CMS/Forward/interface/TotemRPOrganization.h"
 #include "SimG4CMS/Forward/interface/TotemNumberMerger.h"
 #include "FWCore/MessageLogger/interface/MessageLogger.h"
-#include "DataFormats/TotemRPDetId/interface/TotemRPDetId.h"
+#include "DataFormats/CTPPSDetId/interface/TotemRPDetId.h"
 
 #include "G4VPhysicalVolume.hh"
 #include "G4VTouchable.hh"

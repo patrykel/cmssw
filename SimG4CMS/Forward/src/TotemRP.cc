@@ -16,7 +16,7 @@
 #include "SimG4CMS/Forward/interface/TotemG4Hit.h"
 #include "SimG4CMS/Forward/interface/TotemG4HitCollection.h"
 
-#include "DataFormats/TotemRPDetId/interface/TotemRPDetId.h"
+#include "DataFormats/CTPPSDetId/interface/TotemRPDetId.h"
 
 #include "FWCore/Framework/interface/EventSetup.h"
 #include "FWCore/Framework/interface/ESHandle.h"
