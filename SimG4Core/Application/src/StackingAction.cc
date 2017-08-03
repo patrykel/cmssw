@@ -221,7 +221,14 @@ G4ClassificationOfNewTrack StackingAction::ClassifyNewTrack(const G4Track * aTra
 {
   // G4 interface part
   G4ClassificationOfNewTrack classification = fUrgent;
-  if (aTrack->GetCreatorProcess()==0 || aTrack->GetParentID()==0) {
+  if (aTrack->GetCreatorProcess()==0
+      || aTrack->GetParentID()==0
+      || (aTrack->GetCreatorProcess()->GetProcessType()==fParameterisation
+          && aTrack->GetCreatorProcess()->GetProcessName() == "TotemRPParameterisationProcess" )
+          //change the type of a track also for protons that are transported to Roman Pot stations
+          //by fast proton transport
+
+          ) {
     /*
     std::cout << "StackingAction: primary weight= " 
 	      << aTrack->GetWeight() << " "

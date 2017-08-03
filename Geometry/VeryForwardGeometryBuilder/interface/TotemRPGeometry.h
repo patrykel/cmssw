@@ -12,6 +12,7 @@
 #include "DataFormats/CTPPSDetId/interface/CTPPSDiamondDetId.h"
 #include "CLHEP/Vector/ThreeVector.h"
 #include "CLHEP/Vector/Rotation.h"
+//#include "HepMC/SimpleVector.h"
 #include "Geometry/VeryForwardGeometryBuilder/interface/DetGeomDesc.h"
 
 #include <map>
@@ -34,6 +35,18 @@ class DetId;
  * etc. (see the comments in definition bellow)\n
  * This class is built for both ideal and real geometry. I.e. it is produced by TotemRPIdealGeometryESModule in
  * IdealGeometryRecord and similarly for the real geometry
+ *
+ * ID conversions (based on the class TotemRPDetID)\n
+ * detector ID = |arm|station|RP|det|, i.e. 4-digit decimal number\n
+ * Roman Pot ID =  |arm|station|RP|, i.e. two digits\n
+ * station ID =   |arm|station|\n
+ * arm ID =     |arm|\n
+ * where
+ * \li arm = 0 (left, i.e. z < 0), 1 (right)
+ * \li station = 0 (147m), 1 (180m), 2 (220m)
+ * \li RP = 0 - 5; 0+1 vertical pots (lower |z|), 2+3 horizontal pots, 4+5 vertical pots (higher |z|)
+ * \li det = 0 - 9; u and v detectors alternating; inner (local) x-axis always parallel to strips,
+ *         detector 1200 is such that local x-axis lies between global x and y axes
  **/
 
 class TotemRPGeometry
@@ -43,8 +56,8 @@ class TotemRPGeometry
     typedef std::map<int, DetGeomDesc* > RPDeviceMapType;
     typedef std::map<unsigned int, std::set<unsigned int> > mapSetType;
 
-    TotemRPGeometry() {}
-    ~TotemRPGeometry() {}
+    TotemRPGeometry(){}
+    ~TotemRPGeometry(){}
 
     /// build up from DetGeomDesc
     TotemRPGeometry(const DetGeomDesc * gd)
@@ -58,6 +71,8 @@ class TotemRPGeometry
     ///\brief adds an item to the map (detector ID --> DetGeomDesc)
     /// performs necessary checks, returns 0 if succesful
     char AddDetector(unsigned int, const DetGeomDesc * &);
+    // [MERGING COMMENT - TO REMOVE] - only in Marcin
+    char AddDetector(const DetId & id, const DetGeomDesc * &gd) { return AddDetector(id.rawId(), gd); }
 
     ///\brief adds a RP package (primary vacuum) to a map
     char AddRPDevice(unsigned int id, const DetGeomDesc * &det_geom_desc);
@@ -131,9 +146,17 @@ class TotemRPGeometry
     /// after checks returns set of RP corresponding to the given station ID
     std::set<unsigned int> RPsInStation(unsigned int) const;
     
+    /// after checks returns the centre of a given station
+    /// \param id 2-digit decimal number
+    // [MERGING COMMENT - TO REMOVE] - only in Marcin
+    double GetStationCentreZPosition(unsigned int) const;
+
     /// after checks returns set of detectors corresponding to the given RP ID
     /// containts decimal detetector IDs
     std::set<unsigned int> DetsInRP(unsigned int) const;
+    // [MERGING COMMENT - TO REMOVE] - only in Marcin
+    std::set<unsigned int> DetsInRP(const DetId & id) const { return DetsInRP(id.rawId()); }
+
 
     /// coordinate transformations between local<-->global reference frames
     /// dimensions in mm, raw ID expected
@@ -175,3 +198,4 @@ class TotemRPGeometry
 };
 
 #endif
+
