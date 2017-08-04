@@ -36,7 +36,7 @@ class ProtonTransportFunctionsESSource : public edm::ESProducer
     ProtonTransportFunctionsESSource(const edm::ParameterSet &);
   	~ProtonTransportFunctionsESSource();
   
-	virtual std::unique_ptr<ProtonTransportFunctions> produce(const ProtonTransportRcd &);
+	virtual std::auto_ptr<ProtonTransportFunctions> produce(const ProtonTransportRcd &);
   
   private:
     std::string opticsFile;
@@ -190,7 +190,7 @@ void ProtonTransportFunctionsESSource::LoadIdealFunctions(const ProtonTransportR
 
 //----------------------------------------------------------------------------------------------------
 
-std::unique_ptr<ProtonTransportFunctions> ProtonTransportFunctionsESSource::produce(const ProtonTransportRcd &ptRcd)
+std::auto_ptr<ProtonTransportFunctions> ProtonTransportFunctionsESSource::produce(const ProtonTransportRcd &ptRcd)
 {
 #if DEBUG > 1
   printf(">> ProtonTransportFunctionsESSource::produce\n");
@@ -199,7 +199,7 @@ std::unique_ptr<ProtonTransportFunctions> ProtonTransportFunctionsESSource::prod
   if (!idealFunctionsLoaded)
     LoadIdealFunctions(ptRcd);
 
-  unique_ptr<ProtonTransportFunctions> ptf(new ProtonTransportFunctions(data));
+  auto_ptr<ProtonTransportFunctions> ptf(new ProtonTransportFunctions(data));
   return ptf;
 }
 

@@ -19,7 +19,6 @@ bool DeadChannelsManager::isChannelDead(RPDetId detectorId, unsigned short strip
 	symbolicId += vfat; //add vfatID to symbolic ID
 	stripNumber = stripNumber - vfat * 128; //convert strip number to a number from range <0; 127>
 	TotemSymbID totemSymbolicId;
-	totemSymbolicId.subSystem = TotemSymbID::RP;
 	totemSymbolicId.symbolicID = symbolicId;
 	if (analysisMaskPresent) {
 		std::map<TotemSymbID, TotemVFATAnalysisMask>::const_iterator vfatIter = analysisMask->analysisMask.find(

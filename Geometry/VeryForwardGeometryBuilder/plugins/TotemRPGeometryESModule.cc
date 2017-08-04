@@ -59,8 +59,19 @@ class  TotemRPGeometryESModule : public edm::ESProducer
   public:
     TotemRPGeometryESModule(const edm::ParameterSet &p);
     virtual ~TotemRPGeometryESModule(); 
-
+    /*
     std::auto_ptr<DetGeomDesc> produceIdealGD(const IdealGeometryRecord &);
+
+    std::auto_ptr<DetGeomDesc> produceRealGD(const VeryForwardRealGeometryRecord &);
+    std::auto_ptr<TotemRPGeometry> produceRealTG(const VeryForwardRealGeometryRecord &);
+
+    std::auto_ptr<DetGeomDesc> produceMisalignedGD(const VeryForwardMisalignedGeometryRecord &);
+    std::auto_ptr<TotemRPGeometry> produceMisalignedTG(const VeryForwardMisalignedGeometryRecord &);
+    */
+    std::auto_ptr<DDCompactView> produceMeasuredDDCV(const VeryForwardMeasuredGeometryRecord &);
+
+    std::auto_ptr<DetGeomDesc> produceMeasuredGD(const VeryForwardMeasuredGeometryRecord &);
+    std::auto_ptr<TotemRPGeometry> produceMeasuredTG(const VeryForwardMeasuredGeometryRecord &);
 
     std::auto_ptr<DetGeomDesc> produceRealGD(const VeryForwardRealGeometryRecord &);
     std::auto_ptr<TotemRPGeometry> produceRealTG(const VeryForwardRealGeometryRecord &);
@@ -71,8 +82,8 @@ class  TotemRPGeometryESModule : public edm::ESProducer
   protected:
     unsigned int verbosity;
 
-    void ApplyAlignments(const edm::ESHandle<DetGeomDesc> &idealGD, const edm::ESHandle<RPAlignmentCorrectionsData> &alignments,
-      DetGeomDesc* &newGD);
+    void ApplyAlignments(const edm::ESHandle<DetGeomDesc> &measuredGD, const edm::ESHandle<RPAlignmentCorrectionsData> &alignments, DetGeomDesc* &newGD);
+    void ApplyAlignments(const edm::ESHandle<DDCompactView> &ideal_ddcv, const edm::ESHandle<RPAlignmentCorrectionsData> &alignments, DDCompactView *&measured_ddcv);
 };
 
 
@@ -86,7 +97,9 @@ TotemRPGeometryESModule::TotemRPGeometryESModule(const edm::ParameterSet &p)
 {
   verbosity = p.getUntrackedParameter<unsigned int>("verbosity", 1);  
 
-  setWhatProduced(this, &TotemRPGeometryESModule::produceIdealGD);
+  setWhatProduced(this, &TotemRPGeometryESModule::produceMeasuredDDCV);
+  setWhatProduced(this, &TotemRPGeometryESModule::produceMeasuredGD);
+  setWhatProduced(this, &TotemRPGeometryESModule::produceMeasuredTG);
 
   setWhatProduced(this, &TotemRPGeometryESModule::produceRealGD);
   setWhatProduced(this, &TotemRPGeometryESModule::produceRealTG);

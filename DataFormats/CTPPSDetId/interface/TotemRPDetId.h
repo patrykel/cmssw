@@ -100,6 +100,17 @@ class TotemRPDetId : public CTPPSDetId
       return plane() + getRPDecimalId()*10;
     }
 
+    //-------------------------------- static members ---------------------------------------
+
+    /// fast conversion Raw to Decimal ID
+    static unsigned int rawToDecId(unsigned int raw)
+    {
+        return ((raw >> startArmBit) & maskArm) * 1000
+               + ((raw >> startStationBit) & maskStation) * 100
+               + ((raw >> startRPBit) & maskRP) * 10
+               + ((raw >> startPlaneBit) & maskPlane);
+    }
+
     //-------------------- name methods --------------------
 
     inline void planeName(std::string &name, NameFlag flag = nFull) const
