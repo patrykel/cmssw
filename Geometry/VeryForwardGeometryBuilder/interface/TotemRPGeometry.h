@@ -34,6 +34,18 @@ class DetId;
  * etc. (see the comments in definition bellow)\n
  * This class is built for both ideal and real geometry. I.e. it is produced by TotemRPIdealGeometryESModule in
  * IdealGeometryRecord and similarly for the real geometry
+ *
+ * ID conversions (based on the class TotemRPDetID)\n
+ * detector ID = |arm|station|RP|det|, i.e. 4-digit decimal number\n
+ * Roman Pot ID =  |arm|station|RP|, i.e. two digits\n
+ * station ID =   |arm|station|\n
+ * arm ID =     |arm|\n
+ * where
+ * \li arm = 0 (left, i.e. z < 0), 1 (right)
+ * \li station = 0 (147m), 1 (180m), 2 (220m)
+ * \li RP = 0 - 5; 0+1 vertical pots (lower |z|), 2+3 horizontal pots, 4+5 vertical pots (higher |z|)
+ * \li det = 0 - 9; u and v detectors alternating; inner (local) x-axis always parallel to strips,
+ *         detector 1200 is such that local x-axis lies between global x and y axes
  **/
 
 class TotemRPGeometry

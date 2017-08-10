@@ -16,19 +16,15 @@
 #include "SimG4CMS/Forward/interface/TotemRPOrganization.h"
 #include "SimG4CMS/Forward/interface/TotemNumberMerger.h"
 #include "FWCore/MessageLogger/interface/MessageLogger.h"
+#include "DataFormats/TotemRPDetId/interface/TotemRPDetId.h"
 
 #include "G4VPhysicalVolume.hh"
-#include "G4VTouchable.hh" 
+#include "G4VTouchable.hh"
+#include "G4Step.hh"
 
-//
-// constructors and destructor
-//
-TotemRPOrganization :: TotemRPOrganization() :
-  _needUpdateUnitID(false), _needUpdateData(false), _currentUnitID(-1),
-  _currentPlane(-1), _currentCSC(-1), _currentLayer(-1) {
+#include <iostream>
 
-  edm::LogInfo("ForwardSim") << "Creating TotemRPOrganization";
-}
+//******************************************************************** Constructor and destructor
 
 TotemRPOrganization :: ~TotemRPOrganization() {
 }
@@ -43,27 +39,34 @@ uint32_t TotemRPOrganization :: GetUnitID(const G4Step* aStep) const {
 
 uint32_t TotemRPOrganization :: GetUnitID(const G4Step* aStep) {
 
-  G4VPhysicalVolume* physVol;
-  int32_t UNITA=0;
+G4VPhysicalVolume* physVol;
+  unsigned int arm = 0;
+  unsigned int station = 0;
+  unsigned int roman_pot = 0;
+  unsigned int detector = 0;
+
   const G4VTouchable* touch = aStep->GetPreStepPoint()->GetTouchable();
-  int ii =0;
-  for( ii = 0; ii < touch->GetHistoryDepth(); ii++ ){
+
+  for(int ii = 0; ii < touch->GetHistoryDepth(); ii++ )
+  {
     physVol = touch->GetVolume(ii);
-   
-#ifdef SCRIVI
-    LogDebug("ForwardSim") << "physVol=" << physVol->GetName() << ", level="
-			   << ii  << ", physVol->GetCopyNo()=" 
-			   << physVol->GetCopyNo();
-#endif
-    if (physVol->GetName() == "myRP") _currentDetectorPosition = 3;
-      
-  }
-  physVol= touch->GetVolume(0);//aStep->GetPreStepPoint()->GetPhysicalVolume();
-  
-  if(physVol->GetName() == "myRP") UNITA=(touch->GetVolume(5)->GetCopyNo())*1111;
+    if(physVol->GetName() == "RP_Silicon_Detector")
+    {
+      detector = physVol->GetCopyNo();
+    }
+    else if(physVol->GetName() == "RP_box_primary_vacuum")
+    {
+      int cpy_no = physVol->GetCopyNo();
+      arm = (cpy_no/100)%10;
+      station = (cpy_no/10)%10;
+      roman_pot = cpy_no%10;
+    }
 
 #ifdef SCRIVI
-  LogDebug("ForwardSim") << "\nUNITA-RP " << UNITA << "\n\n";
+    edm::LogInfo("TotemRP") << "physVol=" << physVol->GetName()<< ", level=" << ii
+	  << ", physVol->GetCopyNo()=" << physVol->GetCopyNo()<< endl;
 #endif
-  return UNITA;
+  }
+
+  return TotemRPDetId(arm, station, roman_pot, detector).rawId();
 }
