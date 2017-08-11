@@ -38,7 +38,7 @@ class TotemRPDetId : public CTPPSDetId
     {
     }
   
-    /// Construct from hierarchy indeces.
+    /// Construct from hierarchy indices.
     TotemRPDetId(uint32_t Arm, uint32_t Station, uint32_t RomanPot=0, uint32_t Plane=0, uint32_t Chip=0);
 
     static const uint32_t startPlaneBit, maskPlane, maxPlane, lowMaskPlane;
@@ -124,6 +124,14 @@ class TotemRPDetId : public CTPPSDetId
       }
 
       name += chipNames[chip()];
+    }
+
+    static uint32_t rawToDecId(uint32_t raw)
+    {
+      return ((raw >> startArmBit) & maskArm) * 1000
+             + ((raw >> startStationBit) & maskStation) * 100
+             + ((raw >> startRPBit) & maskRP) * 10
+             + ((raw >> startPlaneBit) & maskPlane);
     }
 
   private:
