@@ -17,6 +17,9 @@
 class TotemSymbID
 {
   public:
+    /// identifies the TOTEM subsystem
+    enum {RP, T1, T2} subSystem;
+
     /// chip ID, raw integer representation of DetId class
     unsigned int symbolicID;
 
