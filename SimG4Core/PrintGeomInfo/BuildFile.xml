@@ -2,6 +2,9 @@
 <use   name="SimG4Core/Notification"/>
 <use   name="SimG4Core/Watcher"/>
 <use   name="SimG4Core/Geometry"/>
+
+<use   name="SimG4CMS/Forward"/>
+
 <use   name="FWCore/ParameterSet"/>
 <use   name="geant4core"/>
 <use   name="boost"/>

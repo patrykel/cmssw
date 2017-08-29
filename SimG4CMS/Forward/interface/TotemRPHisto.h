@@ -51,10 +51,14 @@ public:
 
   void fillNtuple();
 
-private: 
-  TFile *rt_hf;
+    // SHOULD BE PRIVATE START
+    TFile *rt_hf;
 
-  TNtupleD *ntuple;
+    TNtupleD *ntuple;
+    // SHOULD BE PRIVATE END
+
+private: 
+
 
   double rootvec[NUMVARROOT_RP];
 
