@@ -29,6 +29,7 @@
 
 class BeginOfJob;
 class BeginOfRun;
+class EndOfRun;
 class G4LogicalVolume;
 class G4VPhysicalVolume;
 class G4VSolid;
@@ -39,7 +40,8 @@ typedef std::multimap< G4LogicalVolume*, G4VPhysicalVolume*, std::less<G4Logical
 class PrintGeomInfoAction : public SimWatcher,
 			    public Observer<const BeginOfJob *>,
 //			    public Observer<const BeginOfRun *>,    -- not used in TotemRP
-                public Observer<const BeginOfEvent *>,
+				public Observer<const EndOfRun *>,
+				public Observer<const BeginOfEvent *>,
                 public Observer<const EndOfEvent *>,
                 public Observer<const G4Step *>,
                 public Observer<const EndOfTrack *>,
@@ -78,6 +80,7 @@ private:
     void update(const EndOfTrack * end_of_track);
     void update(const BeginOfTrack * beg_of_track);
     void update(const BeginOfJob * job);
+	void update(const EndOfRun * end_of_run);
 
     void PrintPrimaryVertex(G4PrimaryVertex* primaryVertex, int indent);
     void PrintParticleTreeNode(G4PrimaryParticle* particle, int indent);

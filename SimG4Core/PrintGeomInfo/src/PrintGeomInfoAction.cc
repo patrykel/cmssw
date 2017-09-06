@@ -990,8 +990,10 @@ void PrintGeomInfoAction::update(const EndOfTrack * end_of_track){
     } else {
         G4cout << "Hello from if in EndOfTrack - NO!!! filling!!!! histos\n";
     }
+}
 
-
+//=================================================================== run
+void PrintGeomInfoAction::update(const EndOfRun * end_of_run){
     // SHOULD BE REMOVED START
     histos->rt_hf->cd();
     histos->ntuple->Write();
@@ -1002,6 +1004,7 @@ void PrintGeomInfoAction::update(const EndOfTrack * end_of_track){
     edm::LogInfo("TotemRP") << std::endl << "TotemRPHisto - from my simwatcher:P: End writing user histograms " << std::endl;
     // SHOULD BE REMOBED END
 }
+
 
 // TotemRP specific END
 
