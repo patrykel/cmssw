@@ -4,7 +4,7 @@ source /cvmfs/cms.cern.ch/cmsset_default.sh
 cmsrel CMSSW_9_2_6
 cd CMSSW_9_2_6/src
 cmsenv
-git cms-merge-topic mackoo13:simulation_9_2_6
+git cms-merge-topic patrykel:simulation_9_2_6
 scram b -j 8
 cd Configuration/Test
 cmsRun test.py
